@@ -172,33 +172,10 @@ import submitVerification from '!!raw-loader!../../../code-examples/sdk/go/front
 <CodeBlock language="go" title="login.go">{submitVerification}</CodeBlock>
 ```
 
-### Check who the current HTTP session belongs to
+### Browser - check who the current HTTP session belongs to
 
-In this example you make a [toSession](https://www.ory.sh/docs/reference/api#tag/frontend/operation/toSession) call to check if
-the session is active.
-
-1. Open the [Ory Identities Playground](https://playground.projects.oryapis.com/ui/) in your browser
-1. Open **Sign Up** to create an account and log in
-1. Copy the `ory_session_playground` cookie from the **Application** tab in your browser developer tools
-1. Add the cookie value in `cookie`
-1. Run the example and send the request with `go run main.go`
-
-The response should look like this.
-
-```go
-Traits  map[email:youremail@example.com]
-```
-
-```mdx-code-block
-import whoamiBrowser from '!!raw-loader!../../../code-examples/sdk/go/frontend/whoami-browser.go'
-
-<CodeBlock language="go" title="login.go">{whoamiBrowser}</CodeBlock>
-```
-
-### Check who the current HTTP session belongs to
-
-In this example you make a [toSession](https://www.ory.sh/docs/reference/api#tag/frontend/operation/toSession) call to check if
-the session is active.
+This example uses [toSession](https://www.ory.sh/docs/reference/api#tag/frontend/operation/toSession) call to check if the session
+is active.
 
 1. Open the [Ory Identities Playground](https://playground.projects.oryapis.com/ui/) in your browser
 1. Open **Sign Up** to create an account and log in
@@ -216,6 +193,17 @@ Traits  map[email:youremail@example.com]
 import whoamiBrowser from '!!raw-loader!../../../code-examples/sdk/go/frontend/whoami-browser.go'
 
 <CodeBlock language="go" title="login.go">{whoamiBrowser}</CodeBlock>
+```
+
+### Native - check who the current HTTP session belongs to
+
+This example uses [toSession](https://www.ory.sh/docs/reference/api#tag/frontend/operation/toSession) call to check if the session
+is active.
+
+```mdx-code-block
+import whoamiNative from '!!raw-loader!../../../code-examples/sdk/go/frontend/whoami-native.go'
+
+<CodeBlock language="go" title="login.go">{whoamiNative}</CodeBlock>
 ```
 
 ### Get active sessions
