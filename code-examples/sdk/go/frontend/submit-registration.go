@@ -1,4 +1,4 @@
-package main
+package frontend
 
 import (
 	"context"
@@ -19,9 +19,9 @@ func init() {
 	ory = client.NewAPIClient(cfg)
 }
 
-func GetVerification(ctx context.Context, flowId string) (*client.VerificationFlow, error) {
+func SubmitRegistration(ctx context.Context, flowId string, body client.UpdateRegistrationFlowBody) (*client.SuccessfulNativeRegistration, error) {
 	// highlight-start
-	flow, _, err := ory.FrontendApi.GetVerificationFlow(ctx).Id(flowId).Execute()
+	flow, _, err := ory.FrontendApi.UpdateRegistrationFlow(ctx).Flow(flowId).UpdateRegistrationFlowBody(body).Execute()
 	if err != nil {
 		return nil, err
 	}

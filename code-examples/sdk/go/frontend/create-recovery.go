@@ -1,4 +1,4 @@
-package main
+package frontend
 
 import (
 	"context"
@@ -19,9 +19,9 @@ func init() {
 	ory = client.NewAPIClient(cfg)
 }
 
-func SubmitLogin(ctx context.Context, flowId string, body client.UpdateLoginFlowBody) (*client.SuccessfulNativeLogin, error) {
-	//highlight-start
-	flow, _, err := ory.FrontendApi.UpdateLoginFlow(ctx).Flow(flowId).UpdateLoginFlowBody(body).Execute()
+func CreateRecovery(ctx context.Context) (*client.RecoveryFlow, error) {
+	// highlight-start
+	flow, _, err := ory.FrontendApi.CreateNativeRecoveryFlow(ctx).Execute()
 	if err != nil {
 		return nil, err
 	}

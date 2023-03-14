@@ -1,4 +1,4 @@
-package main
+package frontend
 
 import (
 	"context"
@@ -19,9 +19,9 @@ func init() {
 	ory = client.NewAPIClient(cfg)
 }
 
-func GetRegistration(ctx context.Context, flowId string) (*client.RegistrationFlow, error) {
+func GetLogin(ctx context.Context, flowId string) (*client.LoginFlow, error) {
 	// highlight-start
-	flow, _, err := ory.FrontendApi.GetRegistrationFlow(ctx).Id(flowId).Execute()
+	flow, _, err := ory.FrontendApi.GetLoginFlow(ctx).Id(flowId).Execute()
 	if err != nil {
 		return nil, err
 	}

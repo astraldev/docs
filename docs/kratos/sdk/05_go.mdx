@@ -42,15 +42,13 @@ go get github.com/ory/client-go
 
 The following code examples show how to use the Frontend API [`frontend`](https://www.ory.sh/docs/reference/api#tag/frontend).
 These endpoints are used by frontend applications (e.g. Single-Page-App, Native Apps, Server Apps, ...) to manage a user's own
-profile.
+profile. There are two types of flows: native flows and browser flows. Native flows are used by **API clients**. Browser flows are
+used by **browser clients**. Read the [Browser vs. native apps](https://www.ory.sh/docs/identities/native-browser) document and
+the [Self-service flows](https://www.ory.sh/docs/kratos/self-service) overview to learn more.
 
-:::info
+### Browser clients
 
-Many of the Frontend API examples use API (or native) flows. These flows are used by clients such as mobile devices or native
-applications. When building an application for browser clients, use the browser flows instead.  
-[Learn more](https://www.ory.sh/docs/identities/native-browser) about the differences when developing browser or native apps.
-
-:::
+### API clients
 
 ### Create login flow
 
@@ -59,7 +57,7 @@ such as mobile devices or native applications. For browser clients use
 [`CreateBrowserLoginFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/createBrowserLoginFlow).
 
 ```mdx-code-block
-import createLogin from '!!raw-loader!../../../code-examples/sdk/go/selfservice/create-login.go'
+import createLogin from '!!raw-loader!../../../code-examples/sdk/go/frontend/create-login.go'
 
 <CodeBlock language="go" title="login.go">{createLogin}</CodeBlock>
 ```
@@ -71,7 +69,7 @@ such as mobile devices or native applications. For browser clients use
 [`createBrowserLoginFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/createBrowserLoginFlow).
 
 ```mdx-code-block
-import createRegistration from '!!raw-loader!../../../code-examples/sdk/go/selfservice/create-registration.go'
+import createRegistration from '!!raw-loader!../../../code-examples/sdk/go/frontend/create-registration.go'
 
 <CodeBlock language="go" title="login.go">{createRegistration}</CodeBlock>
 ```
@@ -83,7 +81,7 @@ such as mobile devices or native applications. For browser clients use
 [`createBrowserRecoveryFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/createBrowserRecoveryFlow).
 
 ```mdx-code-block
-import createRecovery from '!!raw-loader!../../../code-examples/sdk/go/selfservice/create-recovery.go'
+import createRecovery from '!!raw-loader!../../../code-examples/sdk/go/frontend/create-recovery.go'
 
 <CodeBlock language="go" title="login.go">{createRecovery}</CodeBlock>
 ```
@@ -95,7 +93,7 @@ such as mobile devices or native applications. For browser clients use
 [`createBrowserRecoveryFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/createBrowserVerificationFlow).
 
 ```mdx-code-block
-import createVerification from '!!raw-loader!../../../code-examples/sdk/go/selfservice/create-verification.go'
+import createVerification from '!!raw-loader!../../../code-examples/sdk/go/frontend/create-verification.go'
 
 <CodeBlock language="go" title="login.go">{createVerification}</CodeBlock>
 ```
@@ -105,7 +103,7 @@ import createVerification from '!!raw-loader!../../../code-examples/sdk/go/selfs
 [Get a registration flow](https://www.ory.sh/docs/reference/api#tag/frontend/operation/getRegistrationFlow).
 
 ```mdx-code-block
-import getRegistration from '!!raw-loader!../../../code-examples/sdk/go/selfservice/get-registration.go'
+import getRegistration from '!!raw-loader!../../../code-examples/sdk/go/frontend/get-registration.go'
 
 <CodeBlock language="go" title="login.go">{getRegistration}</CodeBlock>
 ```
@@ -115,7 +113,7 @@ import getRegistration from '!!raw-loader!../../../code-examples/sdk/go/selfserv
 [Get a recovery flow](https://www.ory.sh/docs/reference/api#tag/frontend/operation/getRecoveryFlow).
 
 ```mdx-code-block
-import getRecovery from '!!raw-loader!../../../code-examples/sdk/go/selfservice/get-recovery.go'
+import getRecovery from '!!raw-loader!../../../code-examples/sdk/go/frontend/get-recovery.go'
 
 <CodeBlock language="go" title="login.go">{getRecovery}</CodeBlock>
 ```
@@ -125,7 +123,7 @@ import getRecovery from '!!raw-loader!../../../code-examples/sdk/go/selfservice/
 [Get a verification flow](https://www.ory.sh/docs/reference/api#tag/frontend/operation/getVerificationFlow).
 
 ```mdx-code-block
-import getVerification from '!!raw-loader!../../../code-examples/sdk/go/selfservice/get-verification.go'
+import getVerification from '!!raw-loader!../../../code-examples/sdk/go/frontend/get-verification.go'
 
 <CodeBlock language="go" title="login.go">{getVerification}</CodeBlock>
 ```
@@ -136,7 +134,7 @@ To submit or complete a login flow you need to call the
 [`updateLoginFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/updateLoginFlow) endpoint.
 
 ```mdx-code-block
-import submitLogin from '!!raw-loader!../../../code-examples/sdk/go/selfservice/submit-login.go'
+import submitLogin from '!!raw-loader!../../../code-examples/sdk/go/frontend/submit-login.go'
 
 <CodeBlock language="go" title="login.go">{submitLogin}</CodeBlock>
 ```
@@ -147,7 +145,7 @@ To submit or complete a registration flow you need to call the
 [`updateRegistrationFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/updateRegistrationFlow) endpoint.
 
 ```mdx-code-block
-import submitRegistration from '!!raw-loader!../../../code-examples/sdk/go/selfservice/submit-registration.go'
+import submitRegistration from '!!raw-loader!../../../code-examples/sdk/go/frontend/submit-registration.go'
 
 <CodeBlock language="go" title="login.go">{submitRegistration}</CodeBlock>
 ```
@@ -158,7 +156,7 @@ To submit or complete a recovery flow you need to call the
 [`updateRecoveryFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/updateRecoveryFlow) endpoint.
 
 ```mdx-code-block
-import submitRecovery from '!!raw-loader!../../../code-examples/sdk/go/selfservice/submit-recovery.go'
+import submitRecovery from '!!raw-loader!../../../code-examples/sdk/go/frontend/submit-recovery.go'
 
 <CodeBlock language="go" title="login.go">{submitRecovery}</CodeBlock>
 ```
@@ -169,7 +167,7 @@ To submit or complete a recovery flow you need to call the
 [`updateVerificationFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/updateVerificationFlow) endpoint.
 
 ```mdx-code-block
-import submitVerification from '!!raw-loader!../../../code-examples/sdk/go/selfservice/submit-verification.go'
+import submitVerification from '!!raw-loader!../../../code-examples/sdk/go/frontend/submit-verification.go'
 
 <CodeBlock language="go" title="login.go">{submitVerification}</CodeBlock>
 ```
@@ -192,9 +190,32 @@ Traits  map[email:youremail@example.com]
 ```
 
 ```mdx-code-block
-import whoami from '!!raw-loader!../../../code-examples/sdk/go/selfservice/whoami2.go'
+import whoamiBrowser from '!!raw-loader!../../../code-examples/sdk/go/frontend/whoami-browser.go'
 
-<CodeBlock language="go" title="login.go">{whoami}</CodeBlock>
+<CodeBlock language="go" title="login.go">{whoamiBrowser}</CodeBlock>
+```
+
+### Check who the current HTTP session belongs to
+
+In this example you make a [toSession](https://www.ory.sh/docs/reference/api#tag/frontend/operation/toSession) call to check if
+the session is active.
+
+1. Open the [Ory Identities Playground](https://playground.projects.oryapis.com/ui/) in your browser
+1. Open **Sign Up** to create an account and log in
+1. Copy the `ory_session_playground` cookie from the **Application** tab in your browser developer tools
+1. Add the cookie value in `cookie`
+1. Run the example and send the request with `go run main.go`
+
+The response should look like this.
+
+```go
+Traits  map[email:youremail@example.com]
+```
+
+```mdx-code-block
+import whoamiBrowser from '!!raw-loader!../../../code-examples/sdk/go/frontend/whoami-browser.go'
+
+<CodeBlock language="go" title="login.go">{whoamiBrowser}</CodeBlock>
 ```
 
 ### Get active sessions
@@ -202,7 +223,7 @@ import whoami from '!!raw-loader!../../../code-examples/sdk/go/selfservice/whoam
 [Get all active sessions](https://www.ory.sh/docs/reference/api#tag/frontend/operation/listMySessions) for the current user.
 
 ```mdx-code-block
-import getActiveSessions from '!!raw-loader!../../../code-examples/sdk/go/selfservice/get-active-sessions.go'
+import getActiveSessions from '!!raw-loader!../../../code-examples/sdk/go/frontend/get-active-sessions.go'
 
 <CodeBlock language="go" title="login.go">{getActiveSessions}</CodeBlock>
 ```
@@ -214,7 +235,7 @@ user for API clients such as mobile devices or native applications. For browser 
 [`createBrowserLogoutFlow`](https://www.ory.sh/docs/reference/api#tag/frontend/operation/createBrowserLogoutFlow). .
 
 ```mdx-code-block
-import logout from '!!raw-loader!../../../code-examples/sdk/go/selfservice/logout.go'
+import logout from '!!raw-loader!../../../code-examples/sdk/go/frontend/logout.go'
 
 <CodeBlock language="go" title="login.go">{logout}</CodeBlock>
 ```
@@ -224,7 +245,7 @@ import logout from '!!raw-loader!../../../code-examples/sdk/go/selfservice/logou
 [Revoke a specific session](https://www.ory.sh/docs/reference/api#tag/identity/operation/disableSession) for the current user.
 
 ```mdx-code-block
-import revokeSession from '!!raw-loader!../../../code-examples/sdk/go/selfservice/revoke-session.go'
+import revokeSession from '!!raw-loader!../../../code-examples/sdk/go/frontend/revoke-session.go'
 
 <CodeBlock language="go" title="login.go">{revokeSession}</CodeBlock>
 ```
@@ -235,7 +256,7 @@ import revokeSession from '!!raw-loader!../../../code-examples/sdk/go/selfservic
 user.
 
 ```mdx-code-block
-import revokeOtherSessions from '!!raw-loader!../../../code-examples/sdk/go/selfservice/revoke-other-sessions.go'
+import revokeOtherSessions from '!!raw-loader!../../../code-examples/sdk/go/frontend/revoke-other-sessions.go'
 
 <CodeBlock language="go" title="login.go">{revokeOtherSessions}</CodeBlock>
 ```

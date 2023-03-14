@@ -1,4 +1,4 @@
-package main
+package frontend
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	ory "github.com/ory/client-go"
 )
 
-func main() {
+func whoami() {
 	proxyPort := os.Getenv("PROXY_PORT")
 	if proxyPort == "" {
 		proxyPort = "4000"

@@ -1,4 +1,4 @@
-package main
+package frontend
 
 import (
 	"context"
@@ -19,9 +19,9 @@ func init() {
 	ory = client.NewAPIClient(cfg)
 }
 
-func CreateLogin(ctx context.Context) (*client.LoginFlow, error) {
+func GetVerification(ctx context.Context, flowId string) (*client.VerificationFlow, error) {
 	// highlight-start
-	flow, _, err := ory.FrontendApi.CreateNativeLoginFlow(ctx).Execute()
+	flow, _, err := ory.FrontendApi.GetVerificationFlow(ctx).Id(flowId).Execute()
 	if err != nil {
 		return nil, err
 	}

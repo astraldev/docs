@@ -1,7 +1,7 @@
 // Copyright © 2022 Ory Corp
 // SPDX-License-Identifier: Apache-2.0
 
-package identity
+package frontend
 
 import (
 	"context"
@@ -12,7 +12,6 @@ import (
 )
 
 var ory *client.APIClient
-var authed = context.WithValue(context.Background(), client.ContextAccessToken, os.Getenv("ORY_API_KEY"))
 
 func init() {
 	cfg := client.NewConfiguration()
@@ -23,11 +22,16 @@ func init() {
 	ory = client.NewAPIClient(cfg)
 }
 
-func setState(identityId string, state string) (err error) {
+func Logout(ctx context.Context, sessionToken string) error {
 	// highlight-start
-	_, _, err = ory.IdentityApi.
-		PatchIdentity(authed, identityId).
-		JsonPatch([]client.JsonPatch{{Op: "replace", Path: "/state", Value: state}}).Execute()
+	_, err := ory.FrontendApi.PerformNativeLogout(ctx).
+		PerformNativeLogoutBody(*client.NewPerformNativeLogoutBody(sessionToken)).
+		Execute()
+	if err != nil {
+		return err
+	}
+	// Logout was successful
 	// highlight-end
-	return err
+
+	return nil
 }

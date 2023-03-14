@@ -1,4 +1,4 @@
-package main
+package frontend
 
 import (
 	"context"
@@ -19,9 +19,9 @@ func init() {
 	ory = client.NewAPIClient(cfg)
 }
 
-func GetLogin(ctx context.Context, flowId string) (*client.LoginFlow, error) {
+func SubmitRecovery(ctx context.Context, flowId string, body client.UpdateRecoveryFlowBody) (*client.RecoveryFlow, error) {
 	// highlight-start
-	flow, _, err := ory.FrontendApi.GetLoginFlow(ctx).Id(flowId).Execute()
+	flow, _, err := ory.FrontendApi.UpdateRecoveryFlow(ctx).Flow(flowId).UpdateRecoveryFlowBody(body).Execute()
 	if err != nil {
 		return nil, err
 	}
